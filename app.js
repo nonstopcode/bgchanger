@@ -1,11 +1,10 @@
-// server.js
-var express = require('express');  
-var app = express();  
-var server = app.listen(process.env.PORT || 3000);
-var io = require('socket.io')(server); 
+var express = require('express');
+var app = express();
+var server= require('http').createServer(app);
+var io = require('socket.io').listen(server);
 
-//keep track of how times clients have clicked the button
-var clickCount = 0;
+server.listen(process.env.PORT || 3000);
+
 
 app.use(express.static(__dirname + '/public')); 
 //redirect / to our index.html file
