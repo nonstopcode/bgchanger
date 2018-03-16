@@ -6,7 +6,6 @@ var io = require('socket.io').listen(server);
 server.listen(process.env.PORT || 3000);
 
 
-app.use(express.static(__dirname + '/public')); 
 //redirect / to our index.html file
 app.get('/', function(req, res,next) {  
     res.sendFile(__dirname + '/client/index.html');
