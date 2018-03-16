@@ -16,14 +16,14 @@ io.sockets.on('connection', function(client){
 
     client.on('colorChoice', function(data){
 
-    	  io.emit('buttonColor', data);
+    	  io.sockets.emit('buttonColor', data);
     	  console.log(data);
 
     });
 
     client.on('picChoice', function(data){
 
-    	  io.emit('buttonImg', data);
+    	  io.sockets.emit('buttonImg', data);
     	  console.log(data);
 
     });
