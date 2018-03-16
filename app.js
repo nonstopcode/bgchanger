@@ -7,6 +7,11 @@ var io = require('socket.io').listen(server);
 var path = require('path');
 
 
+app.use(express.static('public'));
+
+users = [];
+connections = [];
+
 server.listen(process.env.PORT || 3000);
 console.log('Server Running');
 
@@ -14,7 +19,7 @@ app.get('/', function(req, res){
     res.sendFile(__dirname + '/client/index.html');
 });
 
-io.on('connection', function(client) {  
+io.sockets.on('connection', function(client){
 	//when the server receives clicked message, do this
 
     client.on('colorChoice', function(data){
