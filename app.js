@@ -6,9 +6,6 @@ var io = require('socket.io').listen(server);
 
 var path = require('path');
 
-
-app.use(express.static('public'));
-
 users = [];
 connections = [];
 
