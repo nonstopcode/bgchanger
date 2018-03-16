@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Socket.io Demo</title>
+      <meta charset="utf-8">
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <style>
+      *{
+      	margin:0;
+      	padding:0;
+      }
+      .bg{
+
+	    /* Full height */
+	    width:100%;
+
+	    /* Center and scale the image nicely */
+	    background-repeat: no-repeat;
+	    background-size: cover;
+	}
+
+	input{
+		height:40px;
+		font-size:22px;
+
+	}
+
+	button{
+		font-size:22px;
+		height:40px;
+		margin:5px;
+		padding:5px;
+	}
+	#addbar{
+		position:absolute;
+		top:0;
+		background-color: rgba(0, 0, 0, 0.5);
+		width:100%;
+		margin-left:auto;
+		margin-right:auto;
+		text-align: center;
+		padding-top:10px;
+		padding-bottom:10px;
+	}
+	#stupidlogo{
+		float:left;
+		margin-left:10px;
+		font-size:30px;
+		font-weight:bold;
+		color:white;
+		padding-top:5px;
+	}
+      </style>
+   </head>
+   <body class="bg">
+   	<div id="addbar">
+   		<div id="stupidlogo">
+   			Socket.io Background
+   		</div>
+		 <input id="color" type="text" placeholder="Type a color name"></input>
+		 <button onclick= "buttonColor();">Change</button>
+
+		 <input id="pic" type="text" placeholder="background image"></input>
+		 <button onclick= "pic();">Change</button>
+
+		 <script src="/socket.io/socket.io.js"></script>
+    </div>
+		 <script>
+			 var socket = io.connect();
+	
+			 function buttonColor(){
+			  var color = $("#color").val();
+			  socket.emit('colorChoice', color);
+			 }
+			 
+			  socket.on('buttonColor',function(data){
+
+			  	 $("body").css("background",data);
+
+			  });
+
+
+			  function pic(){
+			  var pic = $("#pic").val();
+			  socket.emit('picChoice', pic);
+			 }
+			 
+			  socket.on('buttonImg',function(data){
+
+			  	 $("body").css('background-image', 'url(' + data + ')');
+
+			  });
+
+
+		</script>
+   </body>
+</html>
