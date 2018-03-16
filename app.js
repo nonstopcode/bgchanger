@@ -6,8 +6,6 @@ var io = require('socket.io').listen(server);
 
 var path = require('path');
 
-users = [];
-connections = [];
 
 server.listen(process.env.PORT || 3000);
 console.log('Server Running');
